@@ -14,23 +14,24 @@ function addEmojisToCodeLines() {
         emojiContainer.classList.add('emoji-container')
 
         const emojis = [
-          '👍', // I like this
-          '🔧', // Needs to be changed
-          '❓', // I have a question
-          '🤔', // Thinking aloud or suggesting alternatives
-          '🌱', // Planting a seed for future
-          '📝', // Explanatory note
-          '⛏', // Nitpick
-          '♻️', // Suggestion for refactoring
-          '🏕', // Opportunity to improve the codebase
-          '📌', // Concerns out of scope
-          '💡', // A new idea or suggestion
+          { emoji: '👍', tooltip: 'I like this' },
+          { emoji: '🔧', tooltip: 'Needs to be changed' },
+          { emoji: '❓', tooltip: 'I have a question' },
+          { emoji: '🤔', tooltip: 'Thinking aloud or suggesting alternatives' },
+          { emoji: '🌱', tooltip: 'Planting a seed for future' },
+          { emoji: '📝', tooltip: 'Explanatory note' },
+          { emoji: '⛏', tooltip: 'Nitpick' },
+          { emoji: '♻️', tooltip: 'Suggestion for refactoring' },
+          { emoji: '🏕', tooltip: 'Opportunity to improve the codebase' },
+          { emoji: '📌', tooltip: 'Concerns out of scope' },
+          { emoji: '💡', tooltip: 'A new idea or suggestion' },
         ]
 
-        emojis.forEach((emoji) => {
+        emojis.forEach(({ emoji, tooltip }) => {
           const emojiButton = document.createElement('button')
           emojiButton.innerText = emoji
           emojiButton.style.fontSize = '20px' // Adjust the size as needed
+          emojiButton.title = tooltip // Set the tooltip text
 
           // Add styles to emojiButton
 
