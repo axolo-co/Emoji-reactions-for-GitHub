@@ -71,26 +71,43 @@ function postCommentWithEmoji(emoji, lineElement) {
 
   // Function to proceed with comment posting
   function proceedWithComment() {
-    const commentBox = document.querySelector('.inline-comment-form-container textarea')
+    const commentBox = document.querySelectorAll(
+      '.inline-comment-form-container textarea',
+    )
     if (!commentBox) {
       console.error('Comment box not found')
       return
     }
 
-    commentBox.value = emoji
-    triggerInputEvent(commentBox)
+    // This needs to be changed
+    // We need to identify which one we should take rather than taking the last one every time
+    // Because code reviews aren't always done from top to bottom
+    const lastCommentBox = commentBox.length - 1
 
-    const commentButton = document.querySelector('.review-simple-reply-button')
-    if (!commentButton) {
+    commentBox[lastCommentBox].value = emoji
+    triggerInputEvent(commentBox[lastCommentBox])
+
+    // Same here, we take the last one but it's not always the right one
+    const commentButton = document.querySelectorAll('.review-simple-reply-button')
+    const lastCommentButton = commentButton.length - 1
+
+    if (!commentButton[lastCommentButton]) {
       console.error('Comment button not found')
       return
     }
-    commentButton.click()
+    commentButton[lastCommentButton].click()
   }
 
   // Check if the comment box is available, if not wait a bit
   const checkExist = setInterval(() => {
-    if (document.querySelector('.inline-comment-form-container textarea')) {
+    const inlineCommentFormContainerTextArea = document.querySelectorAll(
+      '.inline-comment-form-container textarea',
+    )
+    console.log(
+      '👉👉👉 inlineCommentFormContainerTextArea',
+      inlineCommentFormContainerTextArea,
+    )
+    if (inlineCommentFormContainerTextArea) {
       clearInterval(checkExist)
       proceedWithComment()
     }
