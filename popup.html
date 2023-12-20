@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+
     <title>GitHub Emoji Extension</title>
     <style>
         /* Add some basic styling */
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 10px;
             text-align: center;
+            width: 300px; /* Adjust width as needed */
+        height: 400px; /* Adjust height as needed */
+        }
+        .emoji-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .emoji-item {
+            margin-bottom: 10px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
     <h1>GitHub Emoji Commenter</h1>
     <p>Hover over a line in GitHub diff to add an emoji.</p>
-    <!-- You can add more content here as needed -->
+    <h2> Code review emoji guide</h2>
+    <ul class="emoji-list">
+        <li class="emoji-item">👍 - Positive highlight.</li>
+        <li class="emoji-item">🔧 - Suggested change/refactor.</li>
+        <li class="emoji-item">❓ - Question needing response.</li>
+        <li class="emoji-item">🤔💭 - Thinking out loud/exploring alternatives.</li>
+        <li class="emoji-item">🌱 - Planting a seed for future consideration.</li>
+        <li class="emoji-item">📝 - Explanatory note or commentary.</li>
+        <li class="emoji-item">⛏ - Nitpick, often stylistic or formatting.</li>
+        <li class="emoji-item">♻️ - Suggestion for refactoring.</li>
+        <li class="emoji-item">🏕 - Opportunity for improvement.</li>
+        <li class="emoji-item">📌 - Out of scope concern for follow-up.</li>
+        <li class="emoji-item">💡 - Insightful idea or suggestion.</li>
+    </ul>
 </body>
 </html>
