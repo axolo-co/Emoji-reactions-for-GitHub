@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "GitHub Emoji Commenter",
+    "version": "1.0",
+    "description": "Add emoji reactions to GitHub code diffs",
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://github.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "icons": {
+        "48": "icon.png"
+    },
+    "host_permissions": [
+        "https://github.com/*"
+    ]
+}
