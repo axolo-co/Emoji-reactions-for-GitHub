@@ -63,6 +63,7 @@ function triggerInputEvent(element) {
 function postCommentWithEmoji(emoji, lineElement) {
   // Step 1: Click the '+' button
   const addButton = lineElement.querySelector('.js-add-line-comment')
+  console.log('🤪🤪🤪 addButton', addButton)
   if (!addButton) {
     console.error('Add button not found')
     return
@@ -70,32 +71,26 @@ function postCommentWithEmoji(emoji, lineElement) {
   addButton.click()
 
   // Function to proceed with comment posting
-  function proceedWithComment() {
+  function proceedWithComment(indexInput) {
     const commentBox = document.querySelectorAll(
       '.inline-comment-form-container textarea',
     )
+    console.log('🍿 commentBox', commentBox)
     if (!commentBox) {
       console.error('Comment box not found')
       return
     }
 
-    // This needs to be changed
-    // We need to identify which one we should take rather than taking the last one every time
-    // Because code reviews aren't always done from top to bottom
-    const lastCommentBox = commentBox.length - 1
+    commentBox[indexInput].value = emoji
+    triggerInputEvent(commentBox[indexInput])
 
-    commentBox[lastCommentBox].value = emoji
-    triggerInputEvent(commentBox[lastCommentBox])
-
-    // Same here, we take the last one but it's not always the right one
     const commentButton = document.querySelectorAll('.review-simple-reply-button')
-    const lastCommentButton = commentButton.length - 1
 
-    if (!commentButton[lastCommentButton]) {
+    if (!commentButton[indexInput]) {
       console.error('Comment button not found')
       return
     }
-    commentButton[lastCommentButton].click()
+    commentButton[indexInput].click()
   }
 
   // Check if the comment box is available, if not wait a bit
@@ -103,13 +98,24 @@ function postCommentWithEmoji(emoji, lineElement) {
     const inlineCommentFormContainerTextArea = document.querySelectorAll(
       '.inline-comment-form-container textarea',
     )
-    console.log(
-      '👉👉👉 inlineCommentFormContainerTextArea',
-      inlineCommentFormContainerTextArea,
-    )
+
+    let indexInput = -1 // Initialize with a default value
+
+    // Find the index of the first matching element
+    // This index is used to find the correct input from the line that has been selected
+    Array.from(inlineCommentFormContainerTextArea).some((element, index) => {
+      const id = element.getAttribute('id')
+      // The way we find the input is by looking at the ID, usually the input ID we want is something like 'r2_new_inline_comment_123'
+      // So we are looking for an ID that does not starts with 'new_inline'
+      if (id && !id.startsWith('new_inline')) {
+        indexInput = index
+        return true
+      }
+    })
+
     if (inlineCommentFormContainerTextArea) {
       clearInterval(checkExist)
-      proceedWithComment()
+      proceedWithComment(indexInput)
     }
   }, 100) // Check every 100ms
 }
