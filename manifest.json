@@ -22,7 +22,7 @@
         }
     ],
     "icons": {
-        "48": "icon.png"
+        "48": "icon48.png"
     },
     "host_permissions": [
         "https://github.com/*"

@@ -1,34 +1,65 @@
 <!DOCTYPE html>
 <html>
+    
 <head>
     <meta charset="UTF-8">
-
     <title>GitHub Emoji Extension</title>
     <style>
-        /* Add some basic styling */
-        
+        /* Dark Mode Styling */
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50px; /* Adjust the width as needed */
+            height: auto;
+            border-radius: 10px; 
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 10px;
             text-align: center;
-            width: 400px; /* Adjust width as needed */
-            height: 430px; /* Adjust height as needed */
+            color: #c0c0c0; /* Greyish font */
+            background-color: #333;
+            width: 400px;
+            height: auto;
+            position: relative; /* For positioning the share icon */
         }
         .emoji-list {
             list-style-type: none;
-            margin: 10;
+            margin: 10px;
+            padding: 0;
         }
         .emoji-item {
             margin-bottom: 10px;
             text-align: left;
+            font-size: 16px;
+
+        }
+        a, a:visited {
+            color: #4FA1F3;
+        }
+        footer {
+            margin-top: 20px;
+        }
+        .share-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+            color: #4FA1F3; /* Adjust color as needed */
+            font-size: 24px; /* Adjust size as needed */
+        }
+        p {
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
+    <img src="./logo.png" alt="Logo" class="logo">
     <h1>GitHub Emoji Commenter</h1>
-    <p>Hover over a line in GitHub diff to add an emoji.</p>
-    <h2> Code review emoji guide</h2>
+        <p>Hover over a line in GitHub diff to add an emoji.</p>
+    <h1> Code review emoji guide</h1>
     <ul class="emoji-list">
         <li class="emoji-item">👍 - Positive highlight.</li>
         <li class="emoji-item">🔧 - Suggested change/refactor.</li>
@@ -42,5 +73,22 @@
         <li class="emoji-item">📌 - Out of scope concern for follow-up.</li>
         <li class="emoji-item">💡 - Insightful idea or suggestion.</li>
     </ul>
+
+    <!-- Email Submission Section -->
+    <!-- <h3>Stay Updated</h3> 
+    <form action="YOUR_POST_ENDPOINT" method="post">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Submit</button>
+    </form> -->
+
+    <!-- Share Extension Icon -->
+    <!-- <button id="copyToClipboard" class="share-icon">📧 Copy Share Link</button> -->
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p>Brought to you by <a href="https://axolo.co" target="_blank">Axolo</a></p>
+    </footer>
 </body>
 </html>
