@@ -6,7 +6,7 @@ The Emoji Commenter is a lightweight Chrome extension designed to enhance the co
 
 ## Features
 
-- **Easy Emoji Integration:** Add emojis to any line of code in a pull request.
+- **Easy Emoji Integration:** Add emojis to any line of code in a pull request. The list of emojis is sourced from [Axolo's Code Review Emoji Guide](https://github.com/axolo-co/developer-resources/tree/main/code-review-emoji-guide).
 - **Interactive UI:** Emojis appear when hovering over a line of code for quick selection.
 - **Custom Emoji List:** Choose from a predefined list of emojis, each with a unique tooltip.
 
