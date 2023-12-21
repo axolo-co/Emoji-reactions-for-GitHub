@@ -4,6 +4,9 @@
 
 The Emoji Commenter is a lightweight Chrome extension designed to enhance the code review process on GitHub. It allows users to add emoji reactions directly to lines of code in a pull request. Acting on behalf of the user, it seamlessly integrates into the GitHub interface, offering a more interactive and expressive way to communicate feedback during reviews.
 
+![bannerReact with emojis](https://github.com/axolo-co/github-emoji-commenter-extension/assets/10532381/d39912fe-2941-4575-8c0a-b07832c7ef17)
+
+
 ## Features
 
 - **Easy Emoji Integration:** Add emojis to any line of code in a pull request. The list of emojis is sourced from [Axolo's Code Review Emoji Guide](https://github.com/axolo-co/developer-resources/tree/main/code-review-emoji-guide).
