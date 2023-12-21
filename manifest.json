@@ -4,8 +4,7 @@
     "version": "1.0",
     "description": "Add emoji reactions to GitHub code diffs",
     "permissions": [
-        "activeTab",
-        "scripting"
+        "storage"
     ],
     "action": {
         "default_icon": "icon.png",
@@ -18,6 +17,9 @@
             ],
             "js": [
                 "content.js"
+            ],
+            "css": [
+                "styles.css"
             ]
         }
     ],

@@ -20,7 +20,7 @@ function addEmojisToCodeLines() {
           { emoji: '🤔', tooltip: 'Thinking aloud or suggesting alternatives' },
           { emoji: '🌱', tooltip: 'Planting a seed for future' },
           { emoji: '📝', tooltip: 'Explanatory note' },
-          { emoji: '⛏', tooltip: 'Nitpick' },
+          { emoji: '⛏️', tooltip: 'Nitpick' },
           { emoji: '♻️', tooltip: 'Suggestion for refactoring' },
           { emoji: '🏕', tooltip: 'Opportunity to improve the codebase' },
           { emoji: '📌', tooltip: 'Concerns out of scope' },
@@ -64,7 +64,6 @@ function triggerInputEvent(element) {
 function postCommentWithEmoji(emoji, lineElement) {
   // Step 1: Click the '+' button
   const addButton = lineElement.querySelector('.js-add-line-comment')
-  console.log('🤪🤪🤪 addButton', addButton)
   if (!addButton) {
     console.error('Add button not found')
     return
@@ -76,7 +75,6 @@ function postCommentWithEmoji(emoji, lineElement) {
     const commentBox = document.querySelectorAll(
       '.inline-comment-form-container textarea',
     )
-    console.log('🍿 commentBox', commentBox)
     if (!commentBox) {
       console.error('Comment box not found')
       return
@@ -87,11 +85,16 @@ function postCommentWithEmoji(emoji, lineElement) {
 
     const commentButton = document.querySelectorAll('.review-simple-reply-button')
 
-    if (!commentButton[indexInput]) {
-      console.error('Comment button not found')
-      return
-    }
-    commentButton[indexInput].click()
+    // Here we check the settings to see if we should automatically post the comment or not
+    chrome.storage.sync.get('autoComment', (data) => {
+      if (data.autoComment) {
+        if (!commentButton[indexInput]) {
+          console.error('Comment button not found')
+          return
+        }
+        commentButton[indexInput].click()
+      }
+    })
   }
 
   // Check if the comment box is available, if not wait a bit
