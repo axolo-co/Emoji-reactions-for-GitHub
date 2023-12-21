@@ -16,7 +16,8 @@
                 "https://github.com/*"
             ],
             "js": [
-                "content.js"
+                "src/content.js",
+                "src/utils.js"
             ],
             "css": [
                 "styles.css"
