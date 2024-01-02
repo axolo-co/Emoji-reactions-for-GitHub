@@ -21,6 +21,7 @@
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     border: none;
     padding: '0 4px';
+    background-color: transparent;
   }
   
   .emoji-button:hover {
