@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "GitHub Emoji Commenter",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Add emoji reactions to GitHub code diffs",
     "permissions": [
         "storage"
