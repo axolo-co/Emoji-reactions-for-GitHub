@@ -13,14 +13,31 @@ function addEmojisToCodeLines() {
         // Add styles to emojiContainer for positioning and styling
         emojiContainer.classList.add('emoji-container')
 
-        emojis.forEach(({ emoji, tooltip }) => {
+        emojis.forEach(({ emoji, tooltip }, index) => {
           const emojiButton = document.createElement('button')
+          emojiButton.classList.add('emoji-button')
           emojiButton.innerText = emoji
-          emojiButton.style.fontSize = '20px' // Adjust the size as needed
+          emojiButton.style.fontSize = '18px' // Adjust the size as needed
           emojiButton.title = tooltip // Set the tooltip text
 
-          // Add styles to emojiButton
+          // Add a dark gray border to the right of each emoji button
+          if (index < emojis.length - 1) { // Check if it's not the last emoji
+            emojiButton.style.borderRight = '2px solid darkgray'; // Adjust the width and color as needed
+          }
+          // emojiButton.style.padding = '0 4px'; // Add some padding around the emoji text
 
+           // Rounded corners for the first and last emoji
+
+           if (index === 0) { // first emoji
+            emojiButton.style.borderTopLeftRadius = '25px';
+            emojiButton.style.borderBottomLeftRadius = '25px';
+          } else if (index === emojis.length - 1) { // last emoji
+            emojiButton.style.borderTopRightRadius = '25px';
+            emojiButton.style.borderBottomRightRadius = '25px';
+          }       
+
+
+          // Add styles to emojiButton
           emojiButton.addEventListener('click', () => {
             postCommentWithEmoji(emoji, line)
           })
