@@ -7,7 +7,7 @@
         "storage"
     ],
     "action": {
-        "default_icon": "icon.png",
+        "default_icon": "Icon-48.png",
         "default_popup": "popup.html"
     },
     "content_scripts": [
@@ -25,7 +25,7 @@
         }
     ],
     "icons": {
-        "48": "icon48.png"
+        "48": "Icon-48.png"
     },
     "host_permissions": [
         "https://github.com/*"
