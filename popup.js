@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const autoCommentCheckbox = document.getElementById('autoComment')
 
   // Load the saved setting or default to true
-  chrome.storage.sync.get({ autoComment: true }, (data) => {
+  chrome.storage.sync.get({ autoComment: false }, (data) => {
     autoCommentCheckbox.checked = data.autoComment
   })
 

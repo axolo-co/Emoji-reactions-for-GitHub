@@ -107,7 +107,6 @@ function postCommentWithEmoji(emoji, lineElement) {
     )
 
     let indexInput = -1 // Initialize with a default value
-
     // Find the index of the first matching element
     // This index is used to find the correct input from the line that has been selected
     Array.from(inlineCommentFormContainerTextArea).some((element, index) => {
