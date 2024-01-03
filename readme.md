@@ -1,4 +1,4 @@
-# Emoji Commenter for Code Reviews
+# Emoji reactions for GitHub 
 
 ## Overview
 
