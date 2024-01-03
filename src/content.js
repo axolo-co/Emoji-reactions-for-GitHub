@@ -24,7 +24,6 @@ function addEmojisToCodeLines() {
           if (index < emojis.length - 1) { // Check if it's not the last emoji
             emojiButton.style.borderRight = '2px solid darkgray'; // Adjust the width and color as needed
           }
-          // emojiButton.style.padding = '0 4px'; // Add some padding around the emoji text
 
            // Rounded corners for the first and last emoji
 
