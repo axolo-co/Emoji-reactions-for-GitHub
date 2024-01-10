@@ -16,6 +16,8 @@ The Emoji Reactions for GitHub is a lightweight Chrome extension designed to enh
 
 ## Installation
 ### Install on chrome
+Click on the button below to install from the Chrome store:
+
 [![Install on Chrome](https://img.shields.io/badge/-Install%20on%20Chrome-blue?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/emoji-reactions-for-githu/lpnemaljfnjdoiinabghjhlfekceakpf)
 
 ### Install locally to contribute
