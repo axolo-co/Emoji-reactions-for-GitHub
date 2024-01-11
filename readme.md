@@ -1,5 +1,5 @@
 # 🌟 Exciting News: We're on Product Hunt Today! Share Your Feedback 🚀:
-[![Emoji Reactions For GitHub - React with emojis in GitHub code diff like in Slack | Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=433819&theme=light)](Your-Product-Hunt-Page-URL)
+[![Emoji Reactions For GitHub - React with emojis in GitHub code diff like in Slack | Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=433819&theme=light)](https://www.producthunt.com/posts/emoji-reactions-for-github)
 
 
 # Emoji reactions for GitHub 
