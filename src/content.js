@@ -72,12 +72,10 @@ function postCommentWithEmoji(emoji, lineElement) {
   }
   addButton.click()
 
-  // 获取 lineElement 下面 button 的data-anchor 和 data-position
+  // find the textarea and add the emoji
   const dataAnchor = addButton.getAttribute('data-anchor') // diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5
   const dataPosition = addButton.getAttribute('data-position') // 3
-  // r0_new_inline_comment_diff_diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5_3
   const idTaget = `${dataAnchor}_${dataPosition}`
-  // 找到idTarget对应的textarea，然后填充emoji，然后点击评论按钮
 
   // Function to proceed with comment posting
   function proceedWithComment(indexInput) {
