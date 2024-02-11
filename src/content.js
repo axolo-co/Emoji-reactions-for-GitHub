@@ -28,7 +28,7 @@ function handleMouseEnter() {
     });
 
     line.appendChild(emojiContainer);
-  }, 800); // Delay of 2000ms
+  }, 800); // Delay of 800ms
 }
 
 // Function to handle mouse leave event
