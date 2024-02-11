@@ -14,7 +14,6 @@
   border-color: darkgray;
   border-style: solid;
   border-width: 1px;
-  transition: opacity 2000ms ease-in-out;
 }
 
 .emoji-button {
