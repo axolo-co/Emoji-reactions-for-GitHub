@@ -1,3 +1,4 @@
+// Function to add emojis to code lines
 function addEmojisToCodeLines() {
   const codeLines = document.querySelectorAll(
     '.blob-code.blob-code-context.js-file-line, .blob-code.blob-code-addition, .blob-code.blob-code-deletion',
@@ -7,57 +8,80 @@ function addEmojisToCodeLines() {
     if (!line.dataset.emojiAdded) {
       line.dataset.emojiAdded = 'true' // Mark the line so we don't add emojis multiple times
 
-      // When mouse over we show the emoji picker
-      line.addEventListener('mouseenter', () => {
-        const emojiContainer = document.createElement('div')
-        // Add styles to emojiContainer for positioning and styling
-        emojiContainer.classList.add('emoji-container')
-
-        emojis.forEach(({ emoji, tooltip }, index) => {
-          const emojiButton = document.createElement('button')
-          emojiButton.classList.add('emoji-button')
-          emojiButton.innerText = emoji
-          emojiButton.style.fontSize = '18px' // Adjust the size as needed
-          emojiButton.title = tooltip // Set the tooltip text
-
-          // Add a dark gray border to the right of each emoji button
-          if (index < emojis.length - 1) { // Check if it's not the last emoji
-            emojiButton.style.borderRight = '2px solid darkgray'; // Adjust the width and color as needed
-          }
-
-           // Rounded corners for the first and last emoji
-
-           if (index === 0) { // first emoji
-            emojiButton.style.borderTopLeftRadius = '25px';
-            emojiButton.style.borderBottomLeftRadius = '25px';
-          } else if (index === emojis.length - 1) { // last emoji
-            emojiButton.style.borderTopRightRadius = '25px';
-            emojiButton.style.borderBottomRightRadius = '25px';
-          }       
-
-
-          // Add styles to emojiButton
-          emojiButton.addEventListener('click', () => {
-            postCommentWithEmoji(emoji, line)
-          })
-
-          emojiContainer.appendChild(emojiButton)
-        })
-
-        line.appendChild(emojiContainer)
-      })
-
-      // When mouse leave we kill the emoji picker
-      line.addEventListener('mouseleave', () => {
-        const emojiContainer = line.querySelector('.emoji-container')
-        if (emojiContainer) {
-          emojiContainer.remove() // This will remove the emoji picker from the DOM
-        }
-      })
+      line.addEventListener('mouseenter', handleMouseEnter)
+      line.addEventListener('mouseleave', handleMouseLeave)
     }
   })
 }
 
+let timer = null;
+
+// Function to handle mouse enter event
+function handleMouseEnter() {
+  const line = this;
+
+  timer = setTimeout(() => {
+    const emojiContainer = createEmojiContainer();
+    emojis.forEach(({ emoji, tooltip }, index) => {
+      const emojiButton = createEmojiButton(emoji, tooltip, index, line);
+      emojiContainer.appendChild(emojiButton);
+    });
+
+    line.appendChild(emojiContainer);
+  }, 800); // Delay of 2000ms
+}
+
+// Function to handle mouse leave event
+function handleMouseLeave() {
+  const line = this;
+  const emojiContainer = line.querySelector('.emoji-container');
+  if (emojiContainer) {
+    emojiContainer.remove();
+  }
+
+  // Clear the timer when mouse leaves the line
+  if (timer) {
+    clearTimeout(timer);
+    timer = null;
+  }
+}
+
+
+// Function to create emoji container
+function createEmojiContainer() {
+  const emojiContainer = document.createElement('div')
+  emojiContainer.classList.add('emoji-container')
+  return emojiContainer
+}
+
+// Function to create emoji button
+function createEmojiButton(emoji, tooltip, index,line) {
+  const emojiButton = document.createElement('button')
+  emojiButton.classList.add('emoji-button')
+  emojiButton.innerText = emoji
+  emojiButton.style.fontSize = '18px'
+  emojiButton.title = tooltip
+
+  if (index < emojis.length - 1) {
+    emojiButton.style.borderRight = '2px solid darkgray'
+  }
+
+  if (index === 0) {
+    emojiButton.style.borderTopLeftRadius = '25px'
+    emojiButton.style.borderBottomLeftRadius = '25px'
+  } else if (index === emojis.length - 1) {
+    emojiButton.style.borderTopRightRadius = '25px'
+    emojiButton.style.borderBottomRightRadius = '25px'
+  }
+
+  emojiButton.addEventListener('click', () => {
+    postCommentWithEmoji(emoji, line)
+  })
+
+  return emojiButton
+}
+
+// Function to trigger input event
 function triggerInputEvent(element) {
   const event = new Event('input', { bubbles: true })
   element.dispatchEvent(event)
@@ -123,6 +147,20 @@ function postCommentWithEmoji(emoji, lineElement) {
       proceedWithComment(indexInput)
     }
   }, 100) // Check every 100ms
+}
+
+// Function to find the index of the comment box
+function findCommentBoxIndex() {
+  const inlineCommentFormContainerTextArea = document.querySelectorAll('.inline-comment-form-container textarea')
+  let indexInput = -1
+  Array.from(inlineCommentFormContainerTextArea).some((element, index) => {
+    const id = element.getAttribute('id')
+    if (id && !id.startsWith('new_inline')) {
+      indexInput = index
+      return true
+    }
+  })
+  return indexInput
 }
 
 // Observer for dynamic content
