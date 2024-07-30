@@ -7,7 +7,6 @@ function addEmojisToCodeLines() {
   codeLines.forEach((line) => {
     if (!line.dataset.emojiAdded) {
       line.dataset.emojiAdded = 'true' // Mark the line so we don't add emojis multiple times
-
       line.addEventListener('mouseenter', handleMouseEnter)
       line.addEventListener('mouseleave', handleMouseLeave)
     }
@@ -96,6 +95,11 @@ function postCommentWithEmoji(emoji, lineElement) {
   }
   addButton.click()
 
+  // find the textarea and add the emoji
+  const dataAnchor = addButton.getAttribute('data-anchor') // diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5
+  const dataPosition = addButton.getAttribute('data-position') // 3
+  const idTaget = `${dataAnchor}_${dataPosition}`
+
   // Function to proceed with comment posting
   function proceedWithComment(indexInput) {
     const commentBox = document.querySelectorAll(
@@ -105,7 +109,6 @@ function postCommentWithEmoji(emoji, lineElement) {
       console.error('Comment box not found')
       return
     }
-
     commentBox[indexInput].value = emoji
     triggerInputEvent(commentBox[indexInput])
 
@@ -123,30 +126,24 @@ function postCommentWithEmoji(emoji, lineElement) {
     })
   }
 
-  // Check if the comment box is available, if not wait a bit
   const checkExist = setInterval(() => {
-    const inlineCommentFormContainerTextArea = document.querySelectorAll(
-      '.inline-comment-form-container textarea',
-    )
-
-    let indexInput = -1 // Initialize with a default value
-    // Find the index of the first matching element
-    // This index is used to find the correct input from the line that has been selected
-    Array.from(inlineCommentFormContainerTextArea).some((element, index) => {
-      const id = element.getAttribute('id')
-      // The way we find the input is by looking at the ID, usually the input ID we want is something like 'r2_new_inline_comment_123'
-      // So we are looking for an ID that does not starts with 'new_inline'
-      if (id && !id.startsWith('new_inline')) {
-        indexInput = index
-        return true
+    const inlineCommentFormContainerTextAreas = Array.from(document.querySelectorAll('.inline-comment-form-container textarea'));
+  
+    let indexInput = -1;
+    for (let i = 0; i < inlineCommentFormContainerTextAreas.length; i++) {
+      const element = inlineCommentFormContainerTextAreas[i];
+      const id = element.getAttribute('id');
+      if (id && id.includes(idTaget) && !id.startsWith('new_inline')) {
+        indexInput = i;
+        break;
       }
-    })
-
-    if (inlineCommentFormContainerTextArea) {
-      clearInterval(checkExist)
-      proceedWithComment(indexInput)
     }
-  }, 100) // Check every 100ms
+  
+    if (indexInput !== -1) {
+      clearInterval(checkExist);
+      proceedWithComment(indexInput);
+    }
+  }, 100)
 }
 
 // Function to find the index of the comment box
